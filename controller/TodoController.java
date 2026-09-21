@@ -2,6 +2,7 @@ package controller;
 
 import schema.Todo;
 import DTO.Request;
+import factory.RequestHandlerFactory;
 import handlers.*;
 
 import java.util.*;
@@ -35,8 +36,11 @@ public class TodoController {
      * so we will handle these handler in a way that they should now that
      * what to do and when to do and how to have information about others
      */
-     RequestHandler handler = new ValidateBodyHandler(new ValidateParamHandler(new AuthorizationHandler(new AuthenticationHandler(new finishingHandler()))));
+    // RequestHandler handler = new ValidateBodyHandler(new ValidateParamHandler(new AuthorizationHandler(new AuthenticationHandler(new finishingHandler()))));
      // but this implementation is also not good bcz we are having a lot of new keyword so lets create a dedicated factory 
+     // so lets do one thing is that we create a factory
+
+       RequestHandlerFactory.getHandlersForCreateTodo().handle(request);
 
      // see here if order change then u can correct according to u 
         return new Todo();
